@@ -1,0 +1,36 @@
+<div class="col-sm-12 widthTable good ">
+  <div class="panel panel-default filterable">
+    <div class="panel-heading">
+      <h2 style="text-align: center;">Employee Projects</h2>
+    </div>
+    <div class="table-responsive">
+      <table class="table  table-list-search" id="" style="text-align: center;">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of projects,index as i">
+            <td>{{i+1}}</td>
+            <td>{{p.projectTitle}}</td>
+            <td>{{p.projectDescription}}</td>
+            <td>{{p.startDate}}</td>
+            <td>{{p.endDate}}</td>
+            <td>{{p.status}}</td>
+          </tr>
+          <tr *ngIf="flagDataNotFound==true">
+            <td colspan="6">
+              Opps! No records Found
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

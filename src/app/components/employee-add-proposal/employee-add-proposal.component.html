@@ -1,0 +1,55 @@
+<div class="container">
+    <form [formGroup]="proposalForm" (ngSubmit)="addProjectProposal()">
+        <h1>Add Proposal</h1>
+        <label for="proposalTitle" class="light">Title<span style="color: red;">*</span></label>
+        <input type="text" formControlName="proposalTitle">
+        <div *ngIf="proposalTitle.touched && proposalTitle.invalid">
+            <div *ngIf="proposalTitle.errors['required']">
+                <p class="error-message">*Title is required</p>
+            </div>
+            <div *ngIf="proposalTitle.errors['maxlength']">
+                <p class="error-message">*Title should have less than 50 letters</p>
+            </div>
+        </div>
+        <br><br>
+
+        <label for="description" class="light">Description<span style="color: red;">*</span></label>
+        <textarea name="description" id="description" cols="30" rows="10" formControlName="proposalDescription"
+            class=".w-75"></textarea>
+        <div *ngIf="proposalDescription.touched && proposalDescription.invalid">
+            <div *ngIf="proposalDescription.errors['required']">
+                <p class="error-message">*Description is required</p>
+            </div>
+            <div *ngIf="proposalDescription.errors['maxlength']">
+                <p class="error-message">*Description should have less than 250 letters</p>
+            </div>
+        </div> <br><br>
+        <div class="button-container" style="margin-bottom: 30px;">
+            <button type="submit" [disabled]="proposalForm.invalid" class="btn btn-success"
+                style="margin-right: 40px;width: 42%;border-radius: 5px; height: 50px; " data-bs-toggle="modal"
+                data-bs-target="#profileModal">Submit</button>
+            <button routerLink="/employee/view/proposal" style="width: 42%;border-radius: 5px;height: 50px;"
+                class="btn btn-danger">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+<div class="modal fade" id="profileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style=" width: 25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:  #e8eeef; border-radius: 5px;">
+                <div *ngIf="flag">
+                    <p style="margin-left: 10%; font-weight: bold;">Proposal Added Successfully!</p>
+                    <button data-bs-dismiss="modal" class="btn btn-success" style="margin-left:40% ;width:20%;"
+                        routerLink="/employee/view/proposal" data-bs-dismiss="modal">Ok</button>
+                </div>
+                <div *ngIf="exist">
+                    <p style="margin-left: 15%; font-weight: bold;">Proposal Already Existing!</p>
+                    <button data-bs-dismiss="modal" class="btn btn-success"
+                        style="margin-left:40% ; width:20%;">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

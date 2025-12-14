@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Enter Feedback</h1>
+    <form [formGroup]="feedbackForm" (ngSubmit)="sendFeedback()">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
+                    style="display: inline-block">
+                    <li (click)="countStar(star)" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= selectedValue)}"
+                        (mouseover)="addClass(star)" (mouseout)="removeClass(star)" style="cursor: pointer;"> ★
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <textarea name="feedBacktext" id="feedBacktext" cols="30" rows="10" formControlName="feedBackText" class=".w-75"
+            [(ngModel)]="feedbackArea"></textarea>
+        <div *ngIf="feedBackText.touched && feedBackText.invalid">
+            <div *ngIf="feedBackText.errors['required']">
+                <p class="error-message">*Feedback is required</p>
+            </div>
+            <div *ngIf="feedBackText.errors['maxlength']">
+                <p class="error-message">*Feedback max length exceeded</p>
+            </div>
+            <div *ngIf="feedBackText.errors['minlength']">
+                <p class="error-message">*Feedback min length required</p>
+            </div>
+        </div> <br><br>
+        <button type="submit" [disabled]="feedbackForm.invalid" class="btn btn-success"
+            style="width: 45%;margin-right:15px;border-radius: 5px;height: 50px;" data-bs-toggle="modal"
+            data-bs-target="#profileModal">Submit</button>
+        <button routerLink="/employee/view/feedback" style="width: 45%;border-radius: 5px;height: 50px;"
+            class="btn btn-danger">Cancel</button>
+    </form>
+</div>
+
+<div class="modal fade" id="profileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style=" width: 25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:  #e8eeef; border-radius: 5px;">
+                <div *ngIf="!addFlag">
+                    <p style="margin-left: 10%; font-weight: bold;">Feedback Added Successfully!</p>
+                    <button type="button" class="btn btn-success" style="margin-left:40% ;width:20%;"
+                        data-bs-dismiss="modal" (click)="addFlag=false" routerLink="/employee/view/feedback">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

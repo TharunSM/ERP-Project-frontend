@@ -1,0 +1,89 @@
+<div class="col-sm-12 widthTable good ">
+    <div class="panel panel-default filterable">
+        <div class="panel-heading">
+            <h2 style="text-align: center;">My Feedbacks</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table  table-list-search" id="" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th style="width: 600px;">Feedback</th>
+                        <th>Ratings</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let feedback of feedbacks,index as i">
+                        <td scope="col">{{i+1}}</td>
+                        <td scope="col">{{feedback.feedbackText}}</td>
+                        <td scope="col">{{feedback.feedbackRating}}</td>
+                        <td scope="col">
+                            <button (click)="setUpdateFlag(feedback)" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#profileModalforedit">Edit</button>
+                            <button (click)="setDeletedFlag(feedback)" type="submit" class="btn btn-danger"
+                                data-bs-toggle="modal" data-bs-target="#profileModal"
+                                style="margin-left: 20px;">Delete</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="feedbacks.length==0">
+                        <td colspan="4">
+                            Opps! No records Found
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="profileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style=" width: 35%;">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:#e8eeef; border-radius: 7px;">
+                <div *ngIf="deleteFlag">
+                    <p style="margin-left: 20%; font-weight: bold;">Are you sure you want to delete?</p>
+                    <div class="container1" style="margin-left:23% ">
+                        <button (click)="deleteFeedback(selectedFeedback.feedBackId)" class="btn btn-danger"
+                            data-bs-dismiss="modal" style="margin-right: 30px;">Yes, Delete</button>
+                        <button (click)="deleteFlag=false" class="btn btn-success" data-bs-dismiss="modal"
+                            style="width: 100px;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="profileModalforedit" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-body" style=" border-radius: 5px ;width: auto;">
+                <div *ngIf="updateFlag">
+                    <form>
+
+                        <h1 for="title">Edit Feedback</h1>
+                        <br>
+                        <textarea rows="10" cols="30" type="text" id="title" name="title"
+                            [(ngModel)]="selectedFeedback.feedbackText"></textarea>
+                        <br><br>
+                        <button (click)="editFeedback()" class="btn btn-success" data-bs-dismiss="modal"
+                            style="width: 45%;margin-right:30px;margin-left:8px;height: 50px;">Update Feedback</button>
+                        <button (click)="calcelBtm()" class="btn btn-danger" data-bs-dismiss="modal"
+                            style="width: 45%;border-radius: 5px;height: 50px;">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

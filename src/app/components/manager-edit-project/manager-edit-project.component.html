@@ -1,0 +1,130 @@
+<div class="container">
+    <form [formGroup]="editForm" (ngSubmit)="updateProject()">
+        <div>
+            <h1>Edit Project</h1>
+        </div>
+        <div class="row">
+            <div id="form1" class="col-4">
+                <div id="form">
+                    <legend><span class="number">1</span>Project Details</legend><br>
+
+                    <label for="title" class="light">Project Title<span style="color: red;">*</span></label><br>
+                    <input type="text" placeholder="Project Title" [(ngModel)]="project.projectTitle"
+                        formControlName="projectTitle">
+                    <div *ngIf="projectTitle.touched && projectTitle.invalid">
+                        <div *ngIf="projectTitle.errors['required']">
+                            <p class="error-message">*Project title is required</p>
+                        </div>
+                    </div>
+                    <br><br>
+
+                    <label for="description" class="light">Project Description<span
+                            style="color: red;">*</span></label><br>
+                    <input type="text" placeholder="Project Description" [(ngModel)]="project.projectDescription"
+                        formControlName="projectDescription">
+                    <div *ngIf="projectDescription.touched && projectDescription.invalid">
+                        <div *ngIf="projectDescription.errors['required']">
+                            <p class="error-message">*Project Description is required</p>
+                        </div>
+                    </div>
+                    <br><br>
+
+                    <label for="startDate" class="light">Start Date<span style="color: red;">*</span></label><br>
+                    <input type="date" [(ngModel)]="project.startDate" formControlName="startDate">
+                    <div *ngIf="startDate.touched && startDate.invalid">
+                        <div *ngIf="startDate.errors['required']">
+                            <p class="error-message">*Start Date is required</p>
+                        </div>
+                        <div *ngIf="editForm.get('startDate').hasError('pastDate')">
+                            <p class="error-message">*Please select a future date.</p>
+                        </div>
+                    </div>
+                    <br><br>
+
+                    <label for="endDate" class="light">End Date<span style="color: red;">*</span></label><br>
+                    <input type="date" [(ngModel)]="project.endDate" formControlName="endDate">
+                    <div *ngIf="endDate.touched && endDate.invalid">
+                        <div *ngIf="endDate.errors['required']">
+                            <p class="error-message">*End Date is required</p>
+                        </div>
+                    </div>
+                    <div *ngIf="startDate.value>endDate.value && endDate.dirty">
+                        <p class="error-message">*Enddate should be after startdate</p>
+                    </div>
+                </div>
+            </div>
+            <div id="form2" class="col-4">
+                <div id="form">
+                    <legend><span class="number">2</span>Technical Details</legend><br>
+                    <label for="frontEnd" class="light">Frontend Tech Stack<span
+                            style="color: red;">*</span></label><br>
+                    <input type="text" placeholder="Frontend Tech Stack" [(ngModel)]="project.frontEndTechStack"
+                        formControlName="frontEndTechStack">
+                    <div *ngIf="frontEndTechStack.touched && frontEndTechStack.invalid">
+                        <div *ngIf="frontEndTechStack.errors['required']">
+                            <p class="error-message">*Front End Tech Stack is required</p>
+                        </div>
+                    </div><br><br>
+
+                    <label for="backend" class="light">Backend Tech Stack<span style="color: red;">*</span></label><br>
+                    <input type="text" placeholder="Backend Tech Stack" [(ngModel)]="project.backendTechStack"
+                        formControlName="backendTechStack">
+                    <div *ngIf="backendTechStack.touched && backendTechStack.invalid">
+                        <div *ngIf="backendTechStack.errors['required']">
+                            <p class="error-message">*Backend Tech Stack is required</p>
+                        </div>
+                    </div><br><br>
+
+                    <label for="databaseStack" class="light">Database<span style="color: red;">*</span></label><br>
+                    <input type="text" placeholder="Database" [(ngModel)]="project.databaseStack"
+                        formControlName="databaseStack">
+                    <div *ngIf="databaseStack.touched && databaseStack.invalid">
+                        <div *ngIf="databaseStack.errors['required']">
+                            <p class="error-message">*DataBase is required</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="form3" class="col-4">
+                <div id="form">
+                    <legend><span class="number">3</span>Status</legend><br>
+                    <label for="status" class="light">Status<span style="color: red;">*</span></label><br>
+                    <select placeholder="Select Status" formControlName="status" [(ngModel)]="project.status"><br>
+                        <option value="" disabled>Select Status</option>
+                        <option value="Planning">Planning</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                    <br>
+                    <div *ngIf="status.touched && status.invalid">
+                        <div *ngIf="status.errors['required']">
+                            <p class="error-message">*Status is required</p>
+                        </div>
+                    </div><br>
+                    <div class="button-container">
+                        <button type="submit" [disabled]="editForm.invalid" class="btn btn-success"
+                            data-bs-toggle="modal" data-bs-target="#profileModal"
+                            style="margin-right: 10px;width: 40%;border-radius: 5px;height:50px;">Submit</button>
+                        <button (click)="cancelEdit()" class="btn btn-danger"
+                            style="margin-right: 10px;width: 40%;border-radius: 5px;height:50px;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="profileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style=" width: 25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:  #e8eeef; border-radius: 5px;">
+
+                <div *ngIf="flag">
+                    <p style="margin-left: 10%; font-weight: bold;">Project Updated Successfully!</p>
+                    <button data-bs-dismiss="modal" class="btn btn-success" style="margin-left:40% ; width:20%;"
+                        routerLink="/viewManagerProject" class="btn btn-success">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

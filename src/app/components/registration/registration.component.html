@@ -1,0 +1,65 @@
+<div class="main-reg-div"></div>
+<div class="container-head">
+    <div class="container-body" style="background-color: white;margin-top: 20px;">
+        <div class="signup">
+            <form [formGroup]="userRegisterForm" (ngSubmit)="registerUser()">
+                <h2>Registration</h2>
+                <input type="text" name="Username" placeholder="Username" id="username" class="form-control"
+                    formControlName="username">
+
+                <div *ngIf="username.touched && username.invalid">
+                    <div *ngIf="username.errors['required']" class="error-message">*Username is required</div>
+                </div><br>
+
+                <input type="text" placeholder="Email" name="email" id="email" class="form-control"
+                    formControlName="email" (change)="userAlreadyExist=false">
+                <div *ngIf="email.touched && email.invalid">
+                    <div *ngIf="email.errors['required']" class="error-message">*Email is required</div>
+                    <div *ngIf="email.errors['email']" class="error-message">*Email format incorrect</div>
+                </div><br>
+
+                <input type="number" placeholder="Mobile Number" name="mobileNumber" id="mobileNumber"
+                    class="form-control" formControlName="mobileNumber">
+                <div *ngIf="mobileNumber.touched && mobileNumber.invalid">
+                    <div *ngIf="mobileNumber.errors['required']" class="error-message">*Mobile Number is required</div>
+                    <div *ngIf="mobileNumber.errors['pattern']" class="error-message">*Mobile Number must be 10 digits
+                    </div>
+                </div><br>
+
+                <input type="password" placeholder="Password" name="password" id="password" class="form-control"
+                    formControlName="password">
+                <div *ngIf="password.touched && password.invalid">
+                    <div *ngIf="password.errors['required']" class="error-message">*Password is required</div>
+                    <div *ngIf="password.errors['pattern']" class="error-message">*Please Use the format for the
+                        password</div>
+                </div><br>
+
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirmPassword"
+                    class="form-control" formControlName="confirmPassword">
+                <div *ngIf="confirmPassword.touched && confirmPassword.invalid">
+                    <div *ngIf="confirmPassword.errors['required']" class="error-message">*Confirm Password is required
+                    </div>
+                </div>
+
+                <div *ngIf="password.value!=confirmPassword.value  && password.touched" class="error-message">*Passwords
+                    does not Match</div>
+                <br>
+                <select name="role" id="role" formControlName="role" value="Select a Role">
+                    <option value="" disabled>Select a Role</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Employee">Employee</option>
+                </select>
+                <div *ngIf="role.touched && role.invalid">
+                    <div *ngIf="role.errors['required']" class="error-message">*Role is required</div>
+                </div>
+                <button type="submit"
+                    [disabled]="password.value!=confirmPassword.value || userRegisterForm.invalid">Register</button>
+                <div *ngIf="userAlreadyExist" style="color:red; margin-left: 60px;">
+                    <p>User already exists !!</p>
+                </div>
+                <br>
+                <div class="checking">Already have an account? &nbsp;<a routerLink="/login">Login</a></div>
+            </form>
+        </div>
+    </div>
+</div>

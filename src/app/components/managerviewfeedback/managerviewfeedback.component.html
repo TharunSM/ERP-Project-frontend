@@ -1,0 +1,89 @@
+<div class="col-sm-12 widthTable good " style="margin-bottom: 30px;">
+    <div class="panel panel-default filterable">
+        <div class="panel-heading">
+            <h2 style="text-align: center;">Feedback Details</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table  table-list-search" id="">
+                <thead>
+                    <tr>
+                        <th colspan="12">
+                            <span style="margin-left=10px">Sort By
+                                <select (click)="sortOnSelect()" [(ngModel)]="selectOnSort"
+                                    style="border-radius: 10px;height: 38px;width: 300px;padding: auto;">
+                                    <option value="All">All</option>
+                                    <option value="asc" (input)="sortInAsc()">Date Ascending</option>
+                                    <option value="dsc" (input)="sortInDec()">Date Descending</option>
+                                </select>
+                            </span>
+                        </th>
+                    </tr>
+                    <tr scope="row" style="text-align: center;">
+                        <th>S.No</th>
+                        <th>User Name</th>
+                        <th style="width: 400px;">Feedback</th>
+                        <th>Posted Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                    <tr scope="row" *ngFor="let feedBack of feedBacks,index as i"
+                        [ngStyle]="{'background-color' : getColor(feedBack.user.userId)}">
+                        <td scope="col">{{i+1}}</td>
+                        <td>{{feedBack.user.username}}</td>
+                        <td>{{feedBack.feedbackText}}</td>
+                        <td>{{feedBack.date}}</td>
+                        <td>
+                            <button class="btn btn-change" (click)="getUserDetails(feedBack)" data-bs-toggle="modal"
+                                data-bs-target="#profileModal" style="margin-top: 10px;margin-bottom: 10px;">Show
+                                Profile</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="feedBacks.length==0" scope="row">
+                        <td colspan="5">Oops! No records found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="profileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div *ngIf="viewUserFlag">
+                    <div>
+                        <div class="pricing-table ">
+                            <div class="row">
+                                <tr>
+                                    <div class="col-2">
+                                        <div class="pricing-label purple"
+                                            style="height: 25px;width: 100px;padding-left: 5px;padding-right: 10px;">
+                                            <span style="margin-left: 7px;text-align: center;"> User Id:
+                                                {{selectedFeedback.user.userId}}</span>
+                                        </div>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="col-6">
+                                        <h2>User Details</h2>
+
+                                    </div>
+                                </tr>
+                            </div>
+                            <div class="pricing-features">
+                                <div class="feature">Username<span>{{selectedFeedback.user.username}}</span></div>
+                                <div class="feature">Mobile Number<span>{{selectedFeedback.user.mobileNumber}}</span>
+                                </div>
+                                <div class="feature">Mail Adresses<span>{{selectedFeedback.user.email}}</span></div>
+                            </div>
+                            <button class="price-button" data-bs-dismiss="modal" (click)="setViewFlagToClose()"
+                                style="width: 170px;height: 40px;text-align: center;margin-left:30%;border: 1px solid white;">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

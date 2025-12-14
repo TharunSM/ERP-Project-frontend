@@ -1,0 +1,48 @@
+<div class="container">
+    <form [formGroup]="editForm" (ngSubmit)="updateProposal()">
+        <h1>Edit Proposal</h1>
+        <label for="proposalTitle" class="light">Title<span style="color: red;">*</span></label>
+        <input type="text" [(ngModel)]="proposal.proposalTitle" formControlName="proposalTitle">
+        <div *ngIf="proposalTitle.touched && proposalTitle.invalid">
+            <div *ngIf="proposalTitle.errors['required']">
+                <p class="error-message">*Title is required</p>
+            </div>
+            <div *ngIf="proposalTitle.errors['maxlength']">
+                <p class="error-message">*Title should be less than 50 letters</p>
+            </div>
+        </div> <br><br>
+
+        <label for="description" class="light">Description<span style="color: red;">*</span></label>
+        <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="proposal.proposalDescription"
+            formControlName="proposalDescription"></textarea>
+        <div *ngIf="proposalDescription.touched && proposalDescription.invalid">
+            <div *ngIf="proposalDescription.errors['required']">
+                <p class="error-message">*Description is required</p>
+            </div>
+            <div *ngIf="proposalDescription.errors['maxlength']">
+                <p class="error-message">*Description should be less than 250 letters</p>
+            </div>
+        </div> <br><br>
+        <div class="button-container" style="margin-bottom: 30px;">
+            <button type="submit" [disabled]="editForm.invalid" style="cursor: pointer;" class="btn btn-success"
+                data-bs-toggle="modal" data-bs-target="#profileModal"
+                style="margin-right: 40px;width: 42%;border-radius: 5px;height: 50px;">Submit</button>
+            <button (click)="toCancel()" style="cursor: pointer;" class="btn btn-danger"
+                style="width: 42%;border-radius: 5px;height: 50px;">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="profileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style=" width: 25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:  #e8eeef; border-radius: 5px;">
+                <div *ngIf="flag">
+                    <p style="margin-left: 10%; font-weight: bold;">Proposal Updated Successfully!</p>
+                    <button data-bs-dismiss="modal" routerLink="/employee/view/proposal" class="btn btn-success"
+                        style="margin-left:40% ; width:20%;">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

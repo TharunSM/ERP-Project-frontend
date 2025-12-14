@@ -1,0 +1,51 @@
+<div>
+  <nav class="nav-color navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <b><a class="navbar-brand brand-padding nav-text-color" href="#">PROTECH SUITE</a></b>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse align-div" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item nav-element-padding">
+            <a class="nav-link active nav-text-color" aria-current="page" routerLink="/home"><span
+                class="nav-text-color">Home</span></a>
+          </li>
+          <li class="nav-item nav-element-padding">
+            <a class="nav-link active nav-text-color" aria-current="page" routerLink="/employee/project"><span
+                class="nav-text-color">Project</span></a>
+          </li>
+          <li class="nav-item dropdown nav-element-padding">
+            <a class="nav-link dropdown-toggle nav-text-color dropdown-btn" href="#" id="navbarDropdownMenu"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Proposal
+            </a>
+            <ul class="dropdown-menu nav-color" aria-labelledby="navbarDropdownMenu">
+              <li><a class="dropdown-item" href="#" routerLink="/employee/add/proposal"><span class="nav-text-color">Add
+                    Proposal</span></a></li>
+              <li><a class="dropdown-item" href="#" routerLink="/employee/view/proposal"><span class="nav-text-color">My
+                    Proposal</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown nav-element-padding">
+            <a class="nav-link dropdown-toggle nav-text-color dropdown-btn" href="#" id="navbarDropdownMenu"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Feedback
+            </a>
+            <ul class="dropdown-menu nav-color" aria-labelledby="navbarDropdownMenu">
+              <li><a class="dropdown-item" href="#" routerLink="/employee/add/feedback"><span
+                    class="nav-text-color">Post Feedback</span></a></li>
+              <li><a class="dropdown-item" href="#" routerLink="/employee/view/feedback"><span class="nav-text-color">My
+                    Feedbacks</span></a></li>
+            </ul>
+          </li>
+          <li class="nav-item logout-element-padding">
+            <button (click)="logout()" class="nav-link active" aria-current="page"><span
+                class="nav-text-color">Logout</span><i class="fa fa-sign-out"></i></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

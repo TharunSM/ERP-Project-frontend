@@ -1,0 +1,93 @@
+<div class="col-sm-12 widthTable good ">
+    <div class="panel panel-default filterable">
+        <div class="panel-heading">
+            <h2 style="text-align: center;">Projects</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table  table-list-search" id="" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th colspan="8">
+                            <div class="form-group input-info">
+                                <input class="form-control" id="table-search" name="q" placeholder="Search By Title"
+                                    required [(ngModel)]="searchTitle" (input)="searchProject()">
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>ForntEnd Tech Stack</th>
+                        <th>Backend Tech Stack</th>
+                        <th>DataBase</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of projects,index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{p.projectTitle}}</td>
+                        <td>{{p.startDate}}</td>
+                        <td>{{p.endDate}}</td>
+                        <td>{{p.frontEndTechStack}}</td>
+                        <td>{{p.backendTechStack}}</td>
+                        <td>{{p.databaseStack}}</td>
+                        <td><button (click)="addEmployeeToProject(p.projectId)" data-bs-toggle="modal"
+                                data-bs-target="#profileModal" class="btn btn-success">Assign Employee</button></td>
+                    </tr>
+                    <tr *ngIf="projects.length==0">
+                        <td colspan="8">
+                            Opps! No records Found
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="profileModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="width: fit-content">
+            <div class="modal-body">
+                <div style="justify-content: center;">
+                    <h2 style="text-align: center;">Employee List</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Assign</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let e of empListToView">
+                                <td>{{e.username}}</td>
+                                <td>{{e.email}}</td>
+
+                                <td><button (click)="projectIsAssignedToUser(e)" data-bs-toggle="modal"
+                                        data-bs-target="#profileModal!" class="btn btn-success">Status</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="profileModal!" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style=" width: 25%;">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:  #e8eeef; border-radius: 5px;">
+                <p style="margin-left: 20%; font-weight: bold;">Confirm your action</p>
+                <button *ngIf="flag" (click)="assignUserToProject(userIdAssigned)" class="btn  btn-success"
+                    style="margin-left:35% ;width:auto;">Assign</button>
+                <button *ngIf="!flag" (click)="unassignUserToProject(userIdAssigned)" class="btn  btn-warning"
+                    style="margin-left:35% ; width:auto;">Unassign</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+&>.panel-heading {
+  text-transform: uppercase;
+  border-radius: 0;
+  background: blue;
+  color: #fff;
+  border-color: red;
+}
+
+&>.panel-body {}
+
+&>.panel-footer {
+  text-transform: uppercase;
+  border-radius: 0;
+  background: blue;
+  color: #fff;
+  border-color: green;
+}
+
+
+@mixin box-shadow(red) {
+  box-shadow: 0px 3px 10px ($color);
+}
+
+.panel {
+  @include border-radius(3px);
+  border: none;
+}
+
+.button {
+  margin-left: 10px;
+}
+
+.widthTable {
+  height: auto;
+  width: 1000px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
+
+}
+
+.good {
+  border-radius: 5px;
+  border: #2E236C solid 2px;
+  margin-top: 50px;
+}
+
+
+table {
+
+  height: auto;
+  margin-bottom: 0px;
+
+}
+
+table tr th {
+  background-color: #2E236C;
+  color: white;
+
+}
+
+table tr td button {
+  height: 40px;
+  width: 75px;
+  text-align: center;
+
+}
+
+table tr td {
+  border: #2e236cbd solid 1px;
+}
+
+
+.not {
+  background-color: white;
+  color: black;
+  margin-left: 50%;
+  margin-right: auto;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  border: none;
+
+}
+
+::ng-deep .carousel-indicators li {
+  display: none;
+}

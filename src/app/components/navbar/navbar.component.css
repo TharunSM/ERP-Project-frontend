@@ -1,0 +1,64 @@
+.pointer-type {
+  cursor: pointer;
+}
+
+.nav-color {
+  background-color: #2E236C;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+
+a.dropdown-item:hover {
+  background-color: #7566c7;
+}
+
+.nav-link.show {
+  color: #7566c7;
+}
+
+.nav-text-color {
+  color: white;
+}
+
+.main-text {
+  font-family: "Poppins", sans-serif;
+}
+
+.align-div {
+  display: flex;
+  justify-content: end;
+  padding-right: 20px;
+}
+
+.brand-padding {
+  padding-left: 40px;
+}
+
+.nav-element-padding {
+  padding-right: 20px;
+}
+
+.logout-element-padding {
+  padding-left: 30px;
+}
+
+.fa-sign-out {
+  color: white;
+  margin-left: 5px;
+}
+
+.main {
+  background-color: aliceblue;
+}
+
+.container-padding {
+  padding-top: 120px;
+  padding-bottom: 200px;
+}
+
+.card-padding {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+}

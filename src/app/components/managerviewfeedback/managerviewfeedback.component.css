@@ -1,0 +1,116 @@
+.purple {
+  background: #627afe;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  color: whitesmoke;
+}
+
+.price-button {
+  background: #2E236C;
+  color: white;
+  border-radius: 10px;
+
+}
+
+table thead {
+  background-color: #2E236C;
+  color: whitesmoke
+}
+
+.btn-change {
+  background-color: #483a97;
+  color: white;
+}
+
+&>.panel-heading {
+  text-transform: uppercase;
+  border-radius: 0;
+  background: blue;
+  color: #fff;
+  border-color: red;
+}
+
+&>.panel-body {}
+
+&>.panel-footer {
+  text-transform: uppercase;
+  border-radius: 0;
+  background: blue;
+  color: #fff;
+  border-color: green;
+}
+
+
+@mixin box-shadow(red) {
+  box-shadow: 0px 3px 10px ($color);
+}
+
+.panel {
+  @include border-radius(3px);
+  border: none;
+}
+
+.widthTable {
+  height: auto;
+  width: fit-content;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.good {
+  border-radius: 5px;
+  border: #2E236C solid 2px;
+  margin-top: 50px;
+
+}
+
+table {
+  height: auto;
+  width: 1000px;
+  margin-bottom: 0px;
+}
+
+table tr th {
+  background-color: #2E236C;
+  color: white;
+
+}
+
+table tr td {
+  border: #2e236cbd solid 1px;
+}
+
+.not {
+  background-color: white;
+  color: black;
+  margin-left: 50%;
+  margin-right: auto;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  border: none;
+
+}
+
+
+.pricing-table .pricing-features .feature {
+  font-size: 14px;
+  margin: .5rem 0;
+  color: #B3B3B3;
+}
+
+.pricing-table .pricing-features .feature span {
+  display: inline-block;
+  float: right;
+  color: #3b3b3b;
+  font-weight: 500;
+}
+
+.sort-button {
+  border-radius: 6px;
+  color: black;
+  background-color: white;
+  border: 1px solid white;
+}

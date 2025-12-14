@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="container" style="margin-bottom: 30px;">
+        <div class="col-sm-12 widthTable good ">
+            <div class="panel panel-default filterable">
+                <div class="panel-heading">
+                    <h2 style="text-align: center;"><u style=" text-decoration: underline;">All Project Proposals</u>
+                    </h2>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="container">
+                                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                    [labels]="chartOptions.labels" [responsive]="chartOptions.responsive"></apx-chart>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="container" style="margin-top: 15%;">
+                                <ngb-carousel *ngIf="projectProposal.length" [interval]="2500" [pauseOnHover]="true"
+                                    [wrap]="true">
+                                    <ng-template ngbSlide *ngFor="let p of projectProposal;index as i">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ p.proposalTitle}}</h5>
+                                                <p class="card-text">{{p.proposalDescription}}</p>
+                                                <br>
+                                                <p class="card-text">{{p.status}}</p>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ngb-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table  table-list-search table-bordered" id="" style="text-align: center;">
+                        <thead>
+                            <tr class=bgcolor>
+                                <th colspan="3">
+                                    <div class="form-group input-info">
+                                        <input class="form-control" id="table-search" name="q"
+                                            placeholder="Search By Proposal" required [(ngModel)]="searchTitle"
+                                            (input)="searchProposal()" aria-label="Search through site content">
+                                    </div>
+                                </th>
+                                <th colspan="2">
+                                    <label for="statusFilter" style="margin-right: 30px;font-size: 18px;">Filter by
+                                        Status:</label>
+                                    <select id="statusFilter" [(ngModel)]="selectedStatus"
+                                        (change)="filterByStatus(selectedStatus)"
+                                        style="border-radius: 10px;height: 38px;padding: auto;width: 100px;">
+                                        <option value="All">All</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </select>
+                                </th>
+                            </tr>
+                            <tr class=bgcolor>
+                                <th>S.No</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of projectProposal, index as i">
+                                <td>{{i+1}}</td>
+                                <td>{{p.proposalTitle}}</td>
+                                <td>{{p.proposalDescription}}</td>
+                                <td *ngIf="p.status=='Pending'" style="color: blue; font-weight: bold;">{{p.status}}
+                                </td>
+                                <td *ngIf="p.status=='Approved'" style="color: green; font-weight: bold;">{{p.status}}
+                                </td>
+                                <td *ngIf="p.status=='Rejected'" style="color: red; font-weight: bold;">{{p.status}}
+                                </td>
+                                <td>
+                                    <button (click)="approve(p.proposalId)"
+                                        *ngIf="p.status=='Rejected' || p.status=='Pending'" style="cursor: pointer;"
+                                        class="btn btn-success" style="width: fit-content;">Approve</button>
+
+                                    <button (click)="reject(p.proposalId)"
+                                        *ngIf="p.status=='Approved' || p.status=='Pending'"
+                                        style="cursor: pointer;width: 85px;margin-top: 10px;"
+                                        class="btn btn-danger">Reject</button>
+                                </td>
+                            </tr>
+                            <tr *ngIf="projectProposal.length==0">
+                                <td colspan="5">
+                                    Opps! No records Found
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
